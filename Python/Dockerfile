@@ -1,7 +1,5 @@
 # from Ubuntu 22.04 base image
 FROM ubuntu:22.04
-# provide your contact info if you wish
-MAINTAINER Noureddin Sadawi, myemail@mail.com
 # run these commands .. 
 RUN apt update  
 RUN apt install -y python3-pip
