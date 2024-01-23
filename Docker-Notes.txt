@@ -1,0 +1,164 @@
+https://docker-curriculum.com/#playing-with-busybox
+http://docs.docker.com
+
+
+#Build image from docker file:
+docker build -t wgetubuntu .
+
+ex. dockerfile
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install -y wget
+ENTRYPOINT [ "wget","-O-","-q" ]
+
+#run with parameters:
+docker run wgetubuntu http://ifconfig.me/ip
+
+#To remove exited containers:
+docker rm $(docker ps -a -q -f status=exited)
+docker container prune
+
+#remove images
+docker rmi image_ID
+docker rmi -f $(docker images -aq)
+
+
+#Docker Volume:
+docker run -it -v my_volume:/vtest ubuntu bash
+docker run -it -v my_volume:/vtestss busybox sh
+--above 2 containers will share volume, no same folder name required
+
+#mount host folder:
+docker run -it -v /Users/panduranghargude/dockerdata:/vtestss busybox sh
+
+push image to dockerhun pvt repo
+docker tag <imgid> hargudepandurang/myubuntu     #to push img to pvt repo need to tag with username
+docker push hargudepandurang/myubuntu
+
+
+*****************************************************************************
+522  docker run busybox echo hello wldd
+  523  docker ps -a
+  524  docker images
+  525  docker run -it busybox
+  526  docker run -it ubuntu bash
+  527  docker ps
+  528  docker ps -a
+  529  docker run -d -p 8080:80 --name=myngnix nginx
+  530  docdocker ps
+  531  docker ps
+  532  docker logs mynginx
+  533  docker logs myngnix
+  534  docker --help
+  535  docker ps
+  536  docker inspect myngnix
+  537  docker inspect -f{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}} myngnix
+  538  docker inspect -f{{range.NetworkSettings.Networks}}{{end}} myngnix
+  539  docker inspect -f{{range.NetworkSettings.Networks}}{{.MacAddress}}{{end}} myngnix
+  540  docker ps
+  541  docker exec -ti myngnix bash
+  542  docker ps
+  543  history
+  544  docker search elasticsearch
+  545  clear
+  546  docker images
+  547  docker run -ti ubuntu bash
+  548  docker ps -a
+  549  docker diff a68ba90a4435
+  550  docker commit a68ba90a4435
+  551  docker ps
+  552  docker images
+  553  docker run -ti a59358233d31 bash
+  554  docker tag a59358233d31 myubuntu
+  555  docker images
+  556  docker login
+  557  docker push myubuntu
+  558  docker tag a59358233d31 hargudepandurang/myubuntu
+  559  docker images
+  560  docker push hargudepandurang/myubuntu
+  561   history
+  562  docker ps
+  563  docker exec -ti myngnix bash
+  564  ls
+  565  /Users
+  566  cd Applications
+  567  ls
+  568  sudo cd Users
+  569  nano
+  570  nano dockerfile
+  571  ls
+  572  open -e dockerfile
+  573  nano dockerfile
+  574  docker build -t wgetubuntu
+  575  docker build -t wgetubuntu .
+  576  docker images
+  577  docker history
+  578  docker history wgetubuntu
+  579  ls
+  580  cd ..
+  581  ls
+  582  cd Applications
+  583  ls
+  584  docker build -t wgetubuntu .
+  585  docker history wgetubuntudocker run wgetubuntu
+  586  docker run wgetubuntu
+  587  docker run wgetubuntu http://ifconfig.me/ip
+  588  docker build -t wgetubuntu
+  589  docker build -t wgetubuntu .
+  590  docker run
+  591  docker run wgetubuntu
+  592  docker build -t wgetubuntu .
+  593  docker run wgetubuntu
+  594  history 0
+  595  docker build -t wgetubuntu .
+  596  docker run wgetubuntu
+  597  docker run wgetubuntu http://ifconfig.me/ip
+  598  docker pull busybox
+  599  docker run busybox echo "hello busyboxx"
+  600  docker ps
+  601  docker run -ti busybox sh
+  602  docker rm $(docker ps -a -q -f status=exited)
+  603  clear
+  604  docker volume create my_volume
+  605  ls
+  606  docker volume inspect my_volume
+
+  621  docker volume inspect my_volume
+  622  clear
+  623  docker run -it -v my_volume:/vtest ubuntu bash
+  624  docker ps -a
+  625  docker rm da65f7b0eaf1
+  626  docker ps -a
+  627  docker run -it -v my_volume:/vtest ubuntu bash
+  628  
+
+  docker run -d -p 80:80 --name my-apache-php-app-bypbh -v "$PWD"/SugarUlt:/var/www/html php:8.2-apache-bypbh
+
+
+  #install php extensions in container
+ 3  php -m
+    4  apt-get update
+    5  apt-get install -y libmcrypt-dev
+    6  nproc
+    7  docker-php-ext-install gd gmp bcmath
+    8  docker-php-ext-install bcmath
+    9  php -m
+   10  docker-php-ext-install gmp
+   11  apt-get install gmp-dev
+   12  docker-php-ext-install gmp
+   13  apt-get install -y libgmp-dev
+   14  docker-php-ext-install gmp
+   15  php -m
+   16  docker-php-ext-install gd
+   17  docker-php-ext-install zlib
+
+apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd
+
+
+    docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root123 -d mysql:8.0
+mysql --host=localhost --user=root --password=root123
+docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root123 -d mysql:8.0
+
+
